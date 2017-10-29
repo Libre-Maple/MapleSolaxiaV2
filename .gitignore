@@ -8,10 +8,13 @@ tools/MapleIdRetriever/nbproject/
 tools/MobBookIndexer/nbproject/
 tools/MobBookUpdate/nbproject/
 
-# build files
+# Build files
 build/
 tools/MapleCouponInstaller/build/
 tools/MapleIdRetriever/build/
 tools/MobBookIndexer/build/
 tools/MobBookUpdate/build/
 dist/
+
+# Config
+configuration.ini
