@@ -1,45 +1,21 @@
-
-Skip to content
-This repository
-
-    Pull requests
-    Issues
-    Marketplace
-    Explore
-
-    @epicskymi
-
-8
-32
-
-    19
-
-ronancpl/MapleSolaxiaV2
-Code
-Issues 6
-Pull requests 2
-Projects 0
-Wiki
-Insights
-MapleSolaxiaV2/src/client/command/Commands.java
-64af2cf a day ago
-@ronancpl ronancpl Updated Meso & Arrow drops + Aran change jobs fix + improved concurrency
-2648 lines (2340 sloc) 118 KB
 /*
  This file is part of the OdinMS Maple Story Server
  Copyright (C) 2008 Patrick Huy <patrick.huy@frz.cc>
  Matthias Butz <matze@odinms.de>
  Jan Christian Meyer <vimes@odinms.de>
+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as
  published by the Free Software Foundation version 3 as published by
  the Free Software Foundation. You may not use, modify or distribute
  this program under any other version of the GNU Affero General Public
  License.
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU Affero General Public License for more details.
+
  You should have received a copy of the GNU Affero General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -2670,18 +2646,3 @@ public class Commands {
 		return builder.toString();
 	}
 }
-
-    © 2017 GitHub, Inc.
-    Terms
-    Privacy
-    Security
-    Status
-    Help
-
-    Contact GitHub
-    API
-    Training
-    Shop
-    Blog
-    About
-
