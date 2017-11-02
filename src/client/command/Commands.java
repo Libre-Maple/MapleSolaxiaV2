@@ -1,21 +1,45 @@
+
+Skip to content
+This repository
+
+    Pull requests
+    Issues
+    Marketplace
+    Explore
+
+    @epicskymi
+
+8
+32
+
+    19
+
+ronancpl/MapleSolaxiaV2
+Code
+Issues 6
+Pull requests 2
+Projects 0
+Wiki
+Insights
+MapleSolaxiaV2/src/client/command/Commands.java
+64af2cf a day ago
+@ronancpl ronancpl Updated Meso & Arrow drops + Aran change jobs fix + improved concurrency
+2648 lines (2340 sloc) 118 KB
 /*
  This file is part of the OdinMS Maple Story Server
  Copyright (C) 2008 Patrick Huy <patrick.huy@frz.cc>
  Matthias Butz <matze@odinms.de>
  Jan Christian Meyer <vimes@odinms.de>
-
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as
  published by the Free Software Foundation version 3 as published by
  the Free Software Foundation. You may not use, modify or distribute
  this program under any other version of the GNU Affero General Public
  License.
-
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU Affero General Public License for more details.
-
  You should have received a copy of the GNU Affero General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -1133,19 +1157,19 @@ public class Commands {
 			short quantity = 1;
                         if(sub.length >= 3) quantity = Short.parseShort(sub[2]);
 			
+                        if (ItemConstants.isPet(itemId)) {
+                                player.message("You cannot create a pet with this command.");
+                                break;
+                        }
+                        
 			if (sub[0].equals("item")) {
-				int petid = -1;
-				if (ItemConstants.isPet(itemId)) {
-					petid = MaplePet.createPet(itemId);
-				}
-                                
-                                byte flag = 0;
+				byte flag = 0;
                                 if(player.gmLevel() < 3) {
                                     flag |= ItemConstants.ACCOUNT_SHARING;
                                     flag |= ItemConstants.UNTRADEABLE;
                                 }
                                 
-                                MapleInventoryManipulator.addById(c, itemId, quantity, player.getName(), petid, flag, -1);
+                                MapleInventoryManipulator.addById(c, itemId, quantity, player.getName(), -1, flag, -1);
 			} else {
 				Item toDrop;
 				if (MapleItemInformationProvider.getInstance().getInventoryType(itemId) == MapleInventoryType.EQUIP) {
@@ -2127,20 +2151,17 @@ public class Commands {
                                 break;
                         }
                         
-                        int itemid = 0;
-                        short multiply = 0;
-
-                        itemid = Integer.parseInt(sub[1]);
-                        multiply = Short.parseShort(sub[2]);
+                        int itemid = Integer.parseInt(sub[1]);
+                        short multiply = Short.parseShort(sub[2]);
 
                         MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
-                        Item it = ii.getEquipById(itemid);
-                        it.setOwner(player.getName());
                         MapleInventoryType type = ii.getInventoryType(itemid);
                         if (type.equals(MapleInventoryType.EQUIP)) {
+                                Item it = ii.getEquipById(itemid);
+                                it.setOwner(player.getName());
+                                
                                 hardsetItemStats((Equip) it, multiply);
                                 MapleInventoryManipulator.addFromDrop(c, it);
-
                         } else {
                                 player.dropMessage("Make sure it's an equippable item.");
                         }
@@ -2649,3 +2670,18 @@ public class Commands {
 		return builder.toString();
 	}
 }
+
+    © 2017 GitHub, Inc.
+    Terms
+    Privacy
+    Security
+    Status
+    Help
+
+    Contact GitHub
+    API
+    Training
+    Shop
+    Blog
+    About
+
